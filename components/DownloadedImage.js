@@ -20,9 +20,9 @@ export default function DownloadedImage (props) {
 
   const styles = StyleSheet.create({
     imageContainer: {
-      marginTop: 50,
+      flex: 1,
       backgroundColor: '#B4FEE7',
-      alignItems: 'center',
-      justifyContent: 'center'
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start'
     }
   });

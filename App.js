@@ -6,6 +6,7 @@ import DownloadedImage  from './components/DownloadedImage';
 import * as Clipboard from 'expo-clipboard';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 import InstagramPostService from './service/instagramPost.Service'
 
@@ -79,16 +80,21 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Chupinhar post</Text>
+    <PaperProvider>
+      <View style={styles.container}>
+        <View style={{flex: 0.4, justifyContent: 'flex-end'}}>
+          <Text style={styles.title}>Chupinhar post</Text>
+        </View>
+        
         <TextField 
           url={copiedText}
           setUrl={(change) => { setCopiedText(change)}}
           fetchCopiedText={fetchCopiedText}
           share={() => {processCopiedText()}} />
         <DownloadedImage imageUri={imageUri} />
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="auto" />
+      </View>
+    </PaperProvider>
   );
 }
 
@@ -97,7 +103,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#B4FEE7',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   title: {
     color: '#603F8B',

@@ -1,19 +1,34 @@
-import {  Pressable, StyleSheet, TextInput, Text, View } from "react-native";
-import * as Clipboard from 'expo-clipboard';
+import { StyleSheet, Text, View } from "react-native";
+import { TextInput, Button } from 'react-native-paper';
+import { FONT_BUTTON_TEXT, responsiveDimensions } from '../utils/style.utils'
 
 export default function TextField(props) {
+
     return (
         <View style={styles.container}>
             <View style={styles.textInputContainer}>
-                <TextInput style={styles.textInput} value={props.url} onChangeText={props.setUrl} />
+                <TextInput 
+                    style={styles.textInput}
+                    value={props.url} 
+                    onChangeText={props.setUrl} 
+                    theme={{ colors: { text: '#A16AE8' } }}
+                />
             </View>
             <View style={styles.btnContainer}>
-                <Pressable style={styles.btnColar} onPress={props.fetchCopiedText}>
+                <Button 
+                    icon="content-paste" 
+                    style={styles.btnColar} 
+                    onPress={props.fetchCopiedText}
+                    color="#FFFFFF">
                     <Text style={styles.btnText}>Colar</Text>
-                </Pressable>
-                <Pressable style={[styles.btnColar, styles.btnShare]} onPress={props.share}>
+                </Button>
+                <Button 
+                    icon="share-all" 
+                    style={[styles.btnColar, styles.btnShare]} 
+                    onPress={props.share}
+                    color="#FFFFFF">
                     <Text style={styles.btnText}>Compartilhar</Text>
-                </Pressable>
+                </Button>
             </View>
         </View>
     )
@@ -21,44 +36,43 @@ export default function TextField(props) {
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
+        maxHeight: 200,
+        justifyContent: 'flex-start',
+        width: '100%',
+        padding: 10
     },
     textInputContainer: {
-        height: 60, 
-        width: '85%',
-        marginTop: 40
+        height: responsiveDimensions(66, 56), 
+        marginTop: 40,
+        width: '100%'
     },
     btnContainer: {
+        flex: 1,
         alignContent: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
-        height: 60
+        height: responsiveDimensions(60, 50)
     },
     textInput: {
         backgroundColor: '#FFFFFF',
-        borderWidth: 1, 
-        borderRadius: 10,
-        height: '100%',
-        fontSize: 16,
-        padding: 10,
+        fontSize: responsiveDimensions(22, 16),
+        paddingHorizontal: responsiveDimensions(10, 6),
         color: '#A16AE8',
-        width: 380
     },
     btnColar: {
-        height: 50,
+        height: responsiveDimensions(60, 50),
         backgroundColor: '#FD49A0',
-        borderRadius: 10,
         marginTop: 10,
-        padding: 10,
-        paddingHorizontal: 30,
-        justifyContent: 'center'
+        padding: responsiveDimensions(10, 5),
+        color: "#FFFFFF"
     },
     btnShare: {
         backgroundColor: '#A16AE8'
     },
     btnText: {
         color: '#FFFFFF',
-        fontSize: 18,
+        fontSize: FONT_BUTTON_TEXT,
         fontWeight: 'bold',
         textTransform: 'uppercase'
     }
